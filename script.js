@@ -16,14 +16,14 @@ $(document).ready(function () {
       console.log(response);
       console.log(response.city);
       console.log(
-        "The current forecast calls for " + response.weather[0].description
+        "The current forecast calls for " + response.list[0].weather[0].description
       );
-      console.log("The current temperature is " + response.main.temp + "F");
-      console.log("Low:" + response.main.temp_min + "F");
-      console.log("High:" + response.main.temp_max + "F");
-      console.log("Humidity currently at " + response.main.humidity + "%");
+      console.log("The current temperature is " + response.list[0].main.temp + "F");
+      console.log("Low:" + response.list[0].main.temp_min + "F");
+      console.log("High:" + response.list[0].main.temp_max + "F");
+      console.log("Humidity currently at " + response.list[0].main.humidity + "%");
       console.log(
-        "Wind is moving at a speed of:" + response.wind.speed + "mph"
+        "Wind is moving at a speed of:" + response.list[0].wind.speed + "mph"
       );
     });
   });
