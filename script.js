@@ -6,7 +6,7 @@ $(document).ready(function () {
 var city = $("#searchInput").val()
 console.log(city)
     var queryURL =
-    "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c25eda49392ed989a410cf267c3525ce";
+    "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=c25eda49392ed989a410cf267c3525ce";
     $.ajax({
       url: queryURL,
       method: "GET",
