@@ -1,17 +1,15 @@
-/* #home {
+#home {
   margin-top: 25px;
   text-align: center;
   color: white;
   background-color: rgb(29, 29, 29);
 }
-#inputContainer {
+input {
   background-color: aquamarine;
-  float: left;
-} */
-/* .column {
-  float: left;
-  width: 25%;
-  padding: 0 10px;
-} */
+  ;
+}  
+#card{
+float: left;
+}
 
 
