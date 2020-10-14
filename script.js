@@ -1,7 +1,8 @@
 console.log("Hello World!");
 var today = new Date();
-var date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-var b = 0
+var date =
+  today.getMonth() + 1 + "/" + today.getDate() + "/" + today.getFullYear();
+var b = 0;
 $(document).ready(function () {
   console.log("ready");
   $("#search").on("click", function (event) {
@@ -19,42 +20,63 @@ $(document).ready(function () {
       console.log(response);
       console.log(response.city);
       console.log(
-        "The current forecast calls for " + response.list[0].weather[0].description
+        "The current forecast calls for " +
+          response.list[0].weather[0].description
       );
-      console.log("The current temperature is " + response.list[0].main.temp + "F");
+      console.log(
+        "The current temperature is " + response.list[0].main.temp + "F"
+      );
       console.log("Low:" + response.list[0].main.temp_min + "F");
       console.log("High:" + response.list[0].main.temp_max + "F");
-      console.log("Humidity currently at " + response.list[0].main.humidity + "%");
+      console.log(
+        "Humidity currently at " + response.list[0].main.humidity + "%"
+      );
       console.log(
         "Wind is moving at a speed of:" + response.list[0].wind.speed + "mph"
       );
 
-    // store query data
-    $("#search").on("click", function () {
-      var city = $("#searchInput").val();
-      var cityButtonEl = $("<button>");
-      cityButtonEl.text(city);
-      cityButtonEl.attr("id", "button" + city);
-      b = b + 1;
-      cityButtonEl.attr("class", "btn-light btn-lg btn-block");
-      $("#searchCol").append(cityButtonEl);
-      console.log("clicked search button");
-      localStorage.setItem("cityName" + city, city);
-      currentWeather(city);
-    })
-  //     var results = response.cod;
-  //     for (var i = 0; i < results.length; i++) {
-  //         var weatherDiv = $("<div>")
-  //         var p = $("<p>").text("weather: " + results[i].description);
-  //         var weatherImage = $("<img>");
-  //         weatherImage.attr("src", results[i]);
+      // store query data
+      $("#search").on("click", function () {
+        var city = $("#searchInput").val();
+        var cityButtonEl = $("<button>");
+        cityButtonEl.text(city);
+        cityButtonEl.attr("id", "button" + city);
+        b = b + 1;
+        cityButtonEl.attr("class", "btn-light btn-lg btn-block");
+        $("#searchCol").append(cityButtonEl);
+        console.log("clicked search button");
+        localStorage.setItem("cityName" + city, city);
+        currentWeather(city);
+      });
 
-  //         weatherDiv.append(p);
-  //         weatherDiv.append(weatherImage);
+      $("#card").text(response.name + " (" + date + ") ");
+      var icon = response.weather[0].icone;
+      $("#weather-icon").attr("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
+      $("temperature").text(parseInt(((response.list[0].main.temp) - 273.15) * 1.8) + 32);
+      $("#humidity").text(response.list[0].main.humidity + "%");
+      $("#wind-speed").text(response.list[0].wind.speed + "mph");
+      var cityLat = response.coord.let;
+      var cityLon = response.coord.lon;
 
-  //         $("#weather").prepend(weatherDiv);
-  //     }
-  //   });
+      $("#button" + city).on("click", function () {
+        console.log("you clicked me");
+        localStorage.getItem("cityName" + city);
+        currentWeather(city);
+      })
+
+      //     var results = response.cod;
+      //     for (var i = 0; i < results.length; i++) {
+      //         var weatherDiv = $("<div>")
+      //         var p = $("<p>").text("weather: " + results[i].description);
+      //         var weatherImage = $("<img>");
+      //         weatherImage.attr("src", results[i]);
+
+      //         weatherDiv.append(p);
+      //         weatherDiv.append(weatherImage);
+
+      //         $("#weather").prepend(weatherDiv);
+      //     }
+      //   });
+    });
   });
-});
 });
